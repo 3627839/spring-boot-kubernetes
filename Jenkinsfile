@@ -3,7 +3,6 @@ pipeline{
     stages {
         stage('SCM') {
             steps {
-                figlet 'SCM'
                 checkout scm //copia local codigo
             }
         }
