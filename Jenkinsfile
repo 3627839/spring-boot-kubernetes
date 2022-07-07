@@ -1,14 +1,14 @@
 pipeline{
     agent any
     stages {
-        stage('SCM') {
+        stage('SCM1') {
             steps {
                 checkout scm //copia local codigo
             }
         }
 
       stages {
-        stage('SAST') {
+        stage('SAST1') {
             steps {
 			withSonarQubeEnv('sonar') {
 				sh 'set +x; chmod 777 mvnw'
