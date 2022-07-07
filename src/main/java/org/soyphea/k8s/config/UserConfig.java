@@ -17,3 +17,5 @@ public class UserConfig {
     String name;
     String blog;
 }
+
+private String password = "Password1";
