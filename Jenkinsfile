@@ -5,6 +5,9 @@ pipeline{
             steps {
                 checkout scm //copia local codigo
             }
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
         }
 
         stage('SAST1') {
