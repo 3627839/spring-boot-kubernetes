@@ -18,4 +18,4 @@ public class UserConfig {
     String blog;
 }
 
-private String password = "Password1";
+
