@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment {
+        SCA = '/Users/opena/Downloads/DependencyCheck/bin/dependency-check.sh'
+        }
 
     stages {
         stage('SCM') {
@@ -9,14 +12,25 @@ pipeline{
             
         }
 
+        stage('Check Quality Gate') {
+            steps {	sleep(10)
+		        waitForQualityGate abortPipeline: true
+		        }
+	    }	
+	    stage ('Dependency-Check') {  
+		    steps { 
+		        sh "$SCA --project 't5-sca' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report-T5.html"
+
+		        } 
+            }    
+
         stage('SAST') {
             steps {
+            
 			withSonarQubeEnv('sonar') {
-			//	sh 'set +x; chmod 777 mvnw'
-		    //  sh './mvnw clean package'
-			//	sh './mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=28d69acf9830970cfbd714342091af6783a02e7b -Dsonar.branch.name=t4-sast -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=3627839_spring-boot-kubernetes -Dsonar.organization=3627839'
+			
                 sh './mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=28d69acf9830970cfbd714342091af6783a02e7b -Dsonar.branch.name=t4-sast -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=3627839_spring-boot-kubernetes -Dsonar.organization=3627839'
-            //	sh('set +x; ./mvnw sonarqube -Dsonar.login=28d69acf9830970cfbd714342091af6783a02e7b -Dsonar.branch.name=t4-sast -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=3627839_spring-boot-kubernetes -Dsonar.organization=3627839')
+            
                     }
         	    }	
 	        }
