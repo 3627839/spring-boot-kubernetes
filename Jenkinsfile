@@ -12,11 +12,11 @@ pipeline{
             
         }
 
-        stage('Check Quality Gate') {
-            steps {	sleep(10)
-		        waitForQualityGate abortPipeline: true
-		        }
-	    }	
+        //stage('Check Quality Gate') {
+        //    steps {	sleep(10)
+		//        waitForQualityGate abortPipeline: true
+		//        }
+	    //}	
 	    stage ('Dependency-Check') {  
 		    steps { 
 		        sh "$SCA --project 't5-sca' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report-T5.html"
