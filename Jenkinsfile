@@ -13,7 +13,7 @@ pipeline{
         }
     stage('BUILD') {
          steps {
-            sh 'chmod +x; chmod 777 mvnw'
+            sh 'chmod +x mvnw'
             sh './mvnw clean build'
          }
       }
