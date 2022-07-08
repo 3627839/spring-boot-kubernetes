@@ -22,6 +22,7 @@ pipeline{
 		        sh "$SCA --project 't5-sca' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report-T5.html"
 
 		        } 
+            }    
 
         stage('SAST') {
             steps {
