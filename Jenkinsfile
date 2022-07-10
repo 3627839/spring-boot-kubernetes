@@ -14,10 +14,10 @@ pipeline{
     stage('BUILD') {
          steps {
             sh 'chmod +x mvnw'
-            sh './mvnw install'
+            sh './mvnw clean install'
          }
       }
-
+        /* 
         //stage('Check Quality Gate') {
         //    steps {	sleep(10)
 		//        waitForQualityGate abortPipeline: true
@@ -28,9 +28,9 @@ pipeline{
 		//    steps { 
 		//        sh "$SCA --project 't5-sca' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report-T5.html"
 
-		/*        } 
+		       } 
             }    
-
+        } */
         stage('SAST') {
             steps {
             
@@ -40,6 +40,6 @@ pipeline{
             
                     }
         	    }	
-	        } */
+	        
     }
 }
