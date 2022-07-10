@@ -15,8 +15,8 @@ pipeline{
          steps {
             sh 'chmod +x mvnw'
             sh './mvnw clean install'
-         }
-      }
+            }
+        }
         /* 
         //stage('Check Quality Gate') {
         //    steps {	sleep(10)
@@ -41,5 +41,6 @@ pipeline{
                     }
         	    }	
 	        
+             }
     }
-}
+} 
