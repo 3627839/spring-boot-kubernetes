@@ -27,15 +27,7 @@ pipeline{
         	    }	
 	        
              }
-        /*
-        stage ('SCA') {
-            steps {
-                sh 'mvn org.owasp:dependency-check-maven:check'
-                dependencyCheckPublisher failedNewCritical: 5, failedTotalCritical: 10, pattern: 'target/dad.xml', unstableNewCritical: 3, unstableTotalCritical: 5
-                }
-            }
-
-        */	
+	
 	    stage ('SCA-DC') {  
 		    steps { sh "$SCA --project 'tarea4' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report.html"
 
