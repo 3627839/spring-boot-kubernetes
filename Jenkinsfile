@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-        SCA = '/var/lib/jenkins/Dependency-Check/bin/dependency-check.sh'
+        SCA = '/var/lib/jenkins/dependency-check/bin/dependency-check.sh'
         }
 
     stages {
