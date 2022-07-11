@@ -29,7 +29,7 @@ pipeline{
              }
 	
 	    stage ('SCA-DC') {  
-		    steps { sh "$SCA --project 'tarea4' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report.html"
+		    steps { sh "$SCA --project 'tarea5' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report.html"
 
 		        }  
 	        }  
