@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-        SCA = '/Users/opena/Downloads/DependencyCheck/bin/dependency-check.sh'
+        SCA = '/var/lib/jenkins/Dependency-Check/bin/dependency-check.sh'
         }
 
     stages {
@@ -42,12 +42,23 @@ pipeline{
         	    }	
 	        
              }
-        
+        /*
         stage ('SCA') {
             steps {
                 sh 'mvn org.owasp:dependency-check-maven:check'
                 dependencyCheckPublisher failedNewCritical: 5, failedTotalCritical: 10, pattern: 'target/dad.xml', unstableNewCritical: 3, unstableTotalCritical: 5
                 }
             }
+        */
+        stage('Check Quality Gate') {
+            steps {	sleep(10)
+		        waitForQualityGate abortPipeline: true
+		        }
+	        }	
+	    stage ('Dependency-Check') {  
+		    steps { sh "$SCA --project 'tarea4' --failOnCVSS 7 --scan '${WORKSPACE}'/target/*.jar -o dependency-check-report.html"
+
+		        }  
+	        }  
     }
 } 
