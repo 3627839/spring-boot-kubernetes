@@ -50,6 +50,7 @@ pipeline{
                 }
             }
         */
+        //
         stage('Check Quality Gate') {
             steps {	sleep(10)
 		        waitForQualityGate abortPipeline: true
